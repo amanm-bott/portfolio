@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Chahat Sharma — B.Sc. Public Health student with an interest in public health, emergency care, community health, and AI/ML." />
+  <meta name="theme-color" content="#0b3b6e" />
+  <title>Chahat Sharma | Public Health Portfolio</title>
+
+  <style>
+    :root{
+      --navy:#0b3b6e;
+      --blue:#1769aa;
+      --sky:#eaf5ff;
+      --cyan:#2ca6d8;
+      --ink:#122033;
+      --muted:#637083;
+      --white:#ffffff;
+      --line:#dce7f2;
+      --card:rgba(255,255,255,.82);
+      --shadow:0 18px 50px rgba(18,48,82,.12);
+      --radius:22px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--ink);
+      background:#f7fbff;
+      line-height:1.65;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:min(92%,var(--max));margin:auto}
+
+    /* Background */
+    .bg-orb{
+      position:fixed;
+      width:380px;height:380px;
+      border-radius:50%;
+      filter:blur(70px);
+      opacity:.28;
+      pointer-events:none;
+      z-index:-1;
+    }
+    .orb1{background:#8bd9ff;top:-130px;right:-100px}
+    .orb2{background:#b7cfff;bottom:-160px;left:-140px}
+
+    /* Navbar */
+    header{
+      position:fixed;
+      top:0;left:0;width:100%;
+      z-index:1000;
+      background:rgba(247,251,255,.78);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(220,231,242,.7);
+      transition:.3s;
+    }
+    nav{
+      height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .brand{
+      display:flex;align-items:center;gap:11px;
+      font-weight:900;font-size:1.05rem;
+      letter-spacing:.2px;
+    }
+    .brand-mark{
+      width:39px;height:39px;border-radius:12px;
+      display:grid;place-items:center;
+      color:white;background:linear-gradient(135deg,var(--navy),var(--cyan));
+      box-shadow:0 8px 20px rgba(23,105,170,.25);
+    }
+    .nav-links{display:flex;gap:28px;align-items:center}
+    .nav-links a{
+      color:#43546a;font-size:.93rem;font-weight:700;
+      position:relative;padding:7px 0;
+    }
+    .nav-links a::after{
+      content:"";position:absolute;left:0;bottom:0;width:0;height:2px;
+      background:var(--blue);transition:.25s;
+    }
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+    .menu-btn{display:none;border:0;background:none;font-size:1.55rem;cursor:pointer;color:var(--navy)}
+
+    /* Hero */
+    .hero{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:130px 0 70px;
+      position:relative;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:60px;align-items:center;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      color:var(--blue);background:#e9f6ff;
+      border:1px solid #cdeaff;border-radius:999px;
+      padding:8px 14px;font-size:.82rem;font-weight:800;
+      margin-bottom:22px;
+    }
+    .pulse{
+      width:8px;height:8px;border-radius:50%;background:#25b673;
+      box-shadow:0 0 0 6px rgba(37,182,115,.12);
+    }
+    h1{
+      font-size:clamp(3rem,7vw,5.8rem);
+      line-height:.98;letter-spacing:-.055em;
+      margin-bottom:24px;
+    }
+    .gradient-text{
+      color:var(--navy);
+      background:linear-gradient(90deg,var(--navy),var(--blue),var(--cyan));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero p{
+      max-width:670px;color:var(--muted);
+      font-size:1.08rem;margin-bottom:30px;
+    }
+    .actions{display:flex;gap:13px;flex-wrap:wrap}
+    .btn{
+      border:0;border-radius:13px;padding:13px 20px;
+      font-weight:800;cursor:pointer;transition:.25s;
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .btn-primary{
+      color:white;background:linear-gradient(135deg,var(--navy),var(--blue));
+      box-shadow:0 12px 25px rgba(11,59,110,.22);
+    }
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 17px 32px rgba(11,59,110,.27)}
+    .btn-outline{
+      background:white;border:1px solid var(--line);color:var(--navy);
+    }
+    .btn-outline:hover{transform:translateY(-3px);border-color:#a9cae7}
+
+    .hero-card{
+      position:relative;min-height:430px;
+      display:grid;place-items:center;
+    }
+    .profile-placeholder{
+      width:min(330px,72vw);aspect-ratio:1;
+      border-radius:34% 66% 60% 40% / 40% 35% 65% 60%;
+      background:linear-gradient(145deg,#dff3ff,#ffffff 55%,#cfe9fb);
+      border:1px solid white;
+      box-shadow:var(--shadow);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      color:var(--navy);text-align:center;
+      position:relative;overflow:hidden;
+      animation:float 5s ease-in-out infinite;
+    }
+    .profile-placeholder::before{
+      content:"";position:absolute;width:190px;height:190px;border-radius:50%;
+      background:rgba(44,166,216,.15);top:-50px;right:-50px;
+    }
+    .initials{
+      width:110px;height:110px;border-radius:50%;
+      display:grid;place-items:center;
+      color:white;font-size:2rem;font-weight:900;
+      background:linear-gradient(135deg,var(--navy),var(--cyan));
+      box-shadow:0 18px 35px rgba(11,59,110,.2);
+      margin-bottom:18px;
+    }
+    .profile-placeholder strong{font-size:1.15rem}
+    .profile-placeholder span{color:var(--muted);font-size:.88rem;margin-top:3px}
+    .float-tag{
+      position:absolute;background:white;border:1px solid var(--line);
+      box-shadow:var(--shadow);border-radius:15px;padding:10px 14px;
+      font-size:.82rem;font-weight:800;color:var(--navy);
+      animation:float 4s ease-in-out infinite;
+    }
+    .tag1{top:20px;right:10px}.tag2{bottom:65px;left:0;animation-delay:1s}.tag3{bottom:0;right:20px;animation-delay:1.7s}
+    @keyframes float{50%{transform:translateY(-9px)}}
+
+    section{padding:95px 0;scroll-margin-top:76px}
+    .section-head{margin-bottom:40px}
+    .kicker{
+      color:var(--blue);font-size:.8rem;font-weight:900;
+      text-transform:uppercase;letter-spacing:.15em;margin-bottom:7px;
+    }
+    .section-head h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.035em}
+    .section-head p{color:var(--muted);max-width:680px;margin-top:9px}
+
+    /* About */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .card{
+      background:var(--card);border:1px solid rgba(220,231,242,.9);
+      border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+    .about-copy{font-size:1.02rem;color:#4e5e70}
+    .about-copy strong{color:var(--navy)}
+    .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .stat{
+      padding:20px;border-radius:18px;background:#f5faff;border:1px solid #e0edf8;
+    }
+    .stat b{display:block;color:var(--navy);font-size:1.45rem}
+    .stat span{font-size:.86rem;color:var(--muted)}
+
+    /* Education / Experience */
+    .timeline{position:relative;margin-left:10px}
+    .timeline::before{
+      content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:#cfe1ef;
+    }
+    .timeline-item{position:relative;padding:0 0 30px 40px}
+    .timeline-dot{
+      position:absolute;left:0;top:5px;width:16px;height:16px;
+      border-radius:50%;background:white;border:4px solid var(--blue);
+      box-shadow:0 0 0 5px #eaf5ff;
+    }
+    .timeline-item:last-child{padding-bottom:0}
+    .timeline-item h3{font-size:1.12rem;color:var(--navy);margin-bottom:5px}
+    .date{font-size:.8rem;font-weight:800;color:var(--blue);margin-bottom:8px}
+    .timeline-item p{color:var(--muted)}
+    .timeline-item ul{padding-left:18px;color:var(--muted);margin-top:9px}
+    .timeline-item li{margin:5px 0}
+
+    /* Skills */
+    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .skill-card{
+      padding:24px;border-radius:20px;background:white;
+      border:1px solid var(--line);transition:.25s;
+    }
+    .skill-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+    .skill-icon{
+      width:45px;height:45px;border-radius:13px;display:grid;place-items:center;
+      background:#eaf5ff;color:var(--blue);font-size:1.2rem;margin-bottom:15px;
+    }
+    .skill-card h3{font-size:1rem;margin-bottom:5px}
+    .skill-card p{font-size:.88rem;color:var(--muted)}
+
+    /* Languages */
+    .language-wrap{display:flex;flex-wrap:wrap;gap:12px}
+    .language{
+      padding:12px 18px;background:white;border:1px solid var(--line);
+      border-radius:999px;font-weight:800;color:var(--navy);
+      box-shadow:0 8px 22px rgba(18,48,82,.06);
+    }
+
+    /* Contact */
+    .contact-box{
+      background:linear-gradient(135deg,var(--navy),#145b91);
+      color:white;border-radius:30px;padding:45px;
+      display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;
+      box-shadow:0 22px 50px rgba(11,59,110,.25);
+      position:relative;overflow:hidden;
+    }
+    .contact-box::after{
+      content:"";position:absolute;width:260px;height:260px;border:1px solid rgba(255,255,255,.12);
+      border-radius:50%;right:-80px;top:-90px;
+    }
+    .contact-box h2{font-size:2.2rem;line-height:1.1;margin-bottom:9px}
+    .contact-box p{color:#d9ebf8;max-width:650px}
+    .contact-info{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .contact-link{
+      padding:10px 14px;border-radius:11px;background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.16);font-size:.88rem;
+    }
+    .contact-box .btn{background:white;color:var(--navy);position:relative;z-index:2}
+
+    footer{padding:30px 0 45px;color:#708095;font-size:.85rem;text-align:center}
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    /* Modal */
+    .modal{
+      position:fixed;inset:0;background:rgba(5,25,45,.65);
+      backdrop-filter:blur(8px);display:none;place-items:center;
+      z-index:2000;padding:20px;
+    }
+    .modal.open{display:grid}
+    .modal-box{
+      width:min(620px,100%);background:white;border-radius:24px;padding:30px;
+      box-shadow:0 30px 80px rgba(0,0,0,.25);position:relative;
+      animation:pop .25s ease;
+    }
+    @keyframes pop{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+    .close{
+      position:absolute;top:15px;right:16px;border:0;background:#edf5fb;
+      width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.2rem;color:var(--navy)
+    }
+    .modal-box h3{font-size:1.7rem;color:var(--navy);margin-bottom:8px}
+    .modal-box p{color:var(--muted)}
+    .modal-content{margin-top:18px}
+
+    @media(max-width:850px){
+      .nav-links{
+        position:absolute;top:76px;left:4%;right:4%;
+        display:none;flex-direction:column;align-items:flex-start;
+        background:white;border:1px solid var(--line);border-radius:18px;
+        padding:15px;box-shadow:var(--shadow);
+      }
+      .nav-links.open{display:flex}
+      .menu-btn{display:block}
+      .hero-grid,.about-grid{grid-template-columns:1fr}
+      .hero{padding-top:120px}
+      .hero-card{min-height:370px}
+      .skills-grid{grid-template-columns:1fr 1fr}
+      .contact-box{grid-template-columns:1fr}
+    }
+    @media(max-width:560px){
+      h1{font-size:3.2rem}
+      section{padding:70px 0}
+      .skills-grid,.stat-grid{grid-template-columns:1fr}
+      .card{padding:22px}
+      .contact-box{padding:30px 23px}
+      .contact-box h2{font-size:1.8rem}
+      .hero-card{min-height:340px}
+      .float-tag{font-size:.75rem}
+      .tag1{right:0}.tag2{left:-3px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+
+  <header id="header">
+    <nav class="container">
+      <a class="brand" href="#home" aria-label="Chahat Sharma home">
+        <span class="brand-mark">CS</span>
+        <span>Chahat Sharma</span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="pulse"></span> Public Health Student</div>
+          <h1>Hi, I'm <span class="gradient-text">Chahat Sharma.</span></h1>
+          <p>
+            A motivated B.Sc. Public Health student interested in public health,
+            emergency care, community health services, and the growing role of
+            Artificial Intelligence & Machine Learning in healthcare.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#about">Explore My Portfolio →</a>
+            <a class="btn btn-outline" href="#contact">Get In Touch</a>
+          </div>
+        </div>
+
+        <div class="hero-card reveal">
+          <!-- No resume photo is used here. -->
+          <div class="profile-placeholder" aria-label="Profile placeholder">
+            <div class="initials">CS</div>
+            <strong>Chahat Sharma</strong>
+            <span>B.Sc. Public Health</span>
+          </div>
+          <div class="float-tag tag1">🩺 Public Health</div>
+          <div class="float-tag tag2">🤝 Leadership</div>
+          <div class="float-tag tag3">🤖 AI & ML</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">About Me</div>
+          <h2>People, health & meaningful impact.</h2>
+          <p>A snapshot of Chahat's interests, strengths and academic direction.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card about-copy reveal">
+            <p>
+              I am a <strong>B.Sc. Public Health student</strong> at Parul University,
+              passionate about learning practical skills and gaining real-world experience.
+              My interests include <strong>public health, emergency care, community health,
+              communication and event coordination</strong>.
+            </p>
+            <br>
+            <p>
+              Alongside public health, I am studying a <strong>Minor in Artificial
+              Intelligence and Machine Learning</strong>, exploring how technology can
+              support better healthcare and community outcomes.
+            </p>
+          </div>
+
+          <div class="card reveal">
+            <div class="stat-grid">
+              <div class="stat"><b>2025–Present</b><span>B.Sc. Public Health</span></div>
+              <div class="stat"><b>AI & ML</b><span>Minor Program</span></div>
+              <div class="stat"><b>2+</b><span>Coordinator Experiences</span></div>
+              <div class="stat"><b>4</b><span>Languages</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Education</div>
+          <h2>Academic journey.</h2>
+          <p>Education and learning that shape Chahat's career direction.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="timeline">
+            <article class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="date">2025 — PRESENT</div>
+              <h3>B.Sc. in Public Health</h3>
+              <p><strong>Minor:</strong> Artificial Intelligence and Machine Learning (3 Years Program)</p>
+              <p>Parul University</p>
+            </article>
+
+            <article class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="date">2024 — 2025</div>
+              <h3>12th — Mathematics with Arts</h3>
+              <p>CMP Convent Higher Secondary School</p>
+              <p>Deyalachak, Jammu</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Experience</div>
+          <h2>Learning by doing.</h2>
+          <p>Coordination, communication and teamwork through university activities.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="timeline">
+            <article class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="date">2025 — PRESENT</div>
+              <h3>Coordinator — Incredible Vadodara</h3>
+              <ul>
+                <li>Communicated with new members.</li>
+                <li>Promoted activities and managed events.</li>
+                <li>Worked effectively in a team.</li>
+                <li>Learned and explored new experiences.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="date">2025 — PRESENT</div>
+              <h3>Coordinator — Orientation Program</h3>
+              <ul>
+                <li>Assisted freshers and interacted with parents.</li>
+                <li>Promoted social and cultural activities.</li>
+                <li>Gained experience in event coordination and communication.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Skills</div>
+          <h2>What I bring to a team.</h2>
+          <p>A blend of communication, coordination, practical awareness and curiosity.</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card reveal"><div class="skill-icon">💬</div><h3>Communication</h3><p>Clear communication and public speaking.</p></div>
+          <div class="skill-card reveal"><div class="skill-icon">🤝</div><h3>Teamwork & Leadership</h3><p>Collaborating with teams and coordinating activities.</p></div>
+          <div class="skill-card reveal"><div class="skill-icon">🩹</div><h3>First Aid</h3><p>Basic first aid and emergency response knowledge.</p></div>
+          <div class="skill-card reveal"><div class="skill-icon">🧠</div><h3>Analytical Thinking</h3><p>Quick learning, observation and problem-solving mindset.</p></div>
+          <div class="skill-card reveal"><div class="skill-icon">🌍</div><h3>Public Health</h3><p>Academic foundation in public and community health.</p></div>
+          <div class="skill-card reveal"><div class="skill-icon">📅</div><h3>Event Coordination</h3><p>Supporting activities, people and event execution.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="languages">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Languages</div>
+          <h2>Communication across communities.</h2>
+        </div>
+        <div class="language-wrap reveal">
+          <span class="language">Hindi</span>
+          <span class="language">English</span>
+          <span class="language">Punjabi</span>
+          <span class="language">Dogri</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div>
+            <div class="kicker" style="color:#9cdbff">Let's Connect</div>
+            <h2>Have an opportunity or idea?</h2>
+            <p>I'd be happy to connect, learn and explore meaningful opportunities in public health, community work and related projects.</p>
+            <div class="contact-info">
+              <a class="contact-link" href="tel:6006685658">📞 6006685658</a>
+              <a class="contact-link" href="mailto:chahatdchk@gmail.com">✉️ chahatdchk@gmail.com</a>
+            </div>
+          </div>
+          <button class="btn" id="contactBtn">Contact Me ↗</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Chahat Sharma. Built with purpose.</div>
+  </footer>
+
+  <!-- Contact modal -->
+  <div class="modal" id="contactModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close" id="closeModal" aria-label="Close">×</button>
+      <h3 id="modalTitle">Let's connect</h3>
+      <p>Choose a contact option below.</p>
+      <div class="modal-content">
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:chahatdchk@gmail.com">✉️ Email</a>
+          <a class="btn btn-outline" href="tel:6006685658">📞 Call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile navigation
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+      menuBtn.textContent = navLinks.classList.contains("open") ? "✕" : "☰";
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    // Reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+    // Active navigation item
+    const sections = document.querySelectorAll("main section[id]");
+    const navItems = document.querySelectorAll(".nav-links a");
+
+    const activeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(item => {
+            item.classList.toggle(
+              "active",
+              item.getAttribute("href") === "#" + entry.target.id
+            );
+          });
+        }
+      });
+    }, { rootMargin: "-35% 0px -55% 0px" });
+
+    sections.forEach(section => activeObserver.observe(section));
+
+    // Contact modal
+    const modal = document.getElementById("contactModal");
+    const contactBtn = document.getElementById("contactBtn");
+    const closeModal = document.getElementById("closeModal");
+
+    function openModal() {
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeContactModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    contactBtn.addEventListener("click", openModal);
+    closeModal.addEventListener("click", closeContactModal);
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeContactModal();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeContactModal();
+    });
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
