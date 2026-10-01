@@ -341,6 +341,7 @@
         <a href="#education">Education</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
+        <a href="#certificates">Certificates</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -499,6 +500,31 @@
       </div>
     </section>
 
+    <section id="certificates">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Certificates</div>
+          <h2>Learning & participation.</h2>
+          <p>Certificates and recognitions that add to Chahat's academic and extracurricular journey.</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <div class="skill-icon">🏆</div>
+            <h3>Hoopcorn Event Management</h3>
+            <p>Certificate in recognition of participation/experience in event management.</p>
+            <button class="btn btn-outline certificate-btn" data-title="Hoopcorn Event Management Certificate" style="margin-top:16px">View Certificate →</button>
+          </div>
+          <div class="skill-card reveal">
+            <div class="skill-icon">🇮🇳</div>
+            <h3>Viksit Bharat Young Leaders Dialogue (VBYLD) 2027</h3>
+            <p>Certificate related to participation in the VBYLD 2027 initiative on the MY Bharat platform.</p>
+            <button class="btn btn-outline certificate-btn" data-title="Viksit Bharat Young Leaders Dialogue (VBYLD) 2027 Certificate" style="margin-top:16px">View Certificate →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="languages">
       <div class="container">
         <div class="section-head reveal">
@@ -625,8 +651,18 @@
       if (e.key === "Escape") closeContactModal();
     });
 
+    // Certificate buttons — actual certificate files can be connected after upload
+    document.querySelectorAll(".certificate-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.getElementById("modalTitle").textContent = btn.dataset.title;
+        document.querySelector(".modal-box p").textContent = "Upload the certificate image/PDF to enable the full certificate preview here.";
+        openModal();
+      });
+    });
+
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
+
